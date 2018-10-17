@@ -27,7 +27,7 @@ if($num > 0) {
         $post_item = array(
             "id" => $row['id'],
             "titulo" => $row['titulo'],
-            "conteudo" => $row['conteudo'],
+            "conteudo" => html_entity_decode($row['conteudo']),
             "data" => $row['data'],
             "usuario_id" => $row['usuario_id'],
             "categoria_id" => $row['categoria_id']
