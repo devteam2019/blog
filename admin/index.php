@@ -93,7 +93,7 @@
 
     <!-- Initializations -->
     <script type="text/javascript">
-        // Animations initialization
+        // Animations initialization 
         new WOW().init();
     </script>
 </body>
