@@ -74,7 +74,7 @@
         </div>
     </main>
     <!--Main layout-->
-    
+
     <!-- SCRIPTS -->
     <!-- JQuery -->
     <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
@@ -89,7 +89,7 @@
     <!-- axios cliente rest-->
     <script type="text/javascript" src="./js/axios.0.18.0.min.js"></script>
     <!-- index do vue-->
-    <script type="text/javascript" src="./vuejs/index/index.js"></script>
+    <script type="text/javascript" src="./vuejs/admin/index.js"></script>
 
     <!-- Initializations -->
     <script type="text/javascript">
