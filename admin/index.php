@@ -27,6 +27,7 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand waves-effect" href="#">
+                    <i class="fa fa-unlock-alt"></i>
                     <strong class="blue-text">Admin</strong>
                 </a>
 
@@ -41,11 +42,11 @@
 
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                      <!--  <li class="nav-item active">
                             <a class="nav-link waves-effect" href="#">DashBoard</a>
                         </li>
-
-                        <li class="nav-item">
+                       -->
+                        <li class="nav-item active">
                             <a class="nav-link waves-effect" href="#">Artigos</a>
                         </li>
                    </ul>
@@ -81,7 +82,39 @@
             <!--Section: Cards-->
             <section class="text-center">
 
-
+              <!-- Editable table -->
+                  <div class="card">
+                  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulacao de Artigos</h3>
+                        <div class="card-body">
+                              <div id="table" class="table-editable">
+                                <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
+                                      aria-hidden="true"></i></a></span>
+                                <table class="table table-bordered table-responsive-md table-striped text-center">
+                                  <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Titulo</th>
+                                    <th class="text-center">Conteudo</th>
+                                    <th class="text-center">Data</th>
+                                    <th class="text-center">Editar</th>
+                                    <th class="text-center">Delete</th>
+                                  </tr>
+                                  <tr>
+                                     <td class="pt-3-half" contenteditable="true">1</td>
+                                     <td class="pt-3-half" contenteditable="true">Teste</td>
+                                     <td class="pt-3-half" contenteditable="true">Teste</td>
+                                     <td class="pt-3-half" contenteditable="true">18/10/2018</td>
+                                     <td>
+                                       <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0">Editar</button></span>
+                                     </td>
+                                     <td>
+                                       <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
+                                     </td>
+                                 </tr>
+                                </table>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Editable table -->
 
             </section>
             <!--Section: Cards-->
