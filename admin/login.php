@@ -2,6 +2,9 @@
 <html lang="pt">
 
 <head>
+    <!-- verifica se existe usuario logado-->
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -27,31 +30,41 @@
             <section>
 
               <!--Form with header-->
+              <?php
+
+                if(isset ($_GET['error']) && $_GET['error'] == 1) { ?>
+                  <div class="alert alert-danger" role="alert">
+                    Usuario ou senha invalido!!
+                  </div>
+                  
+              <?php } ?>
 
                 <div class="card">
                     <div class="card-block">
 
-                        <!--Header-->
-                        <div class="form-header text-center  purple  blue-grey lighten-5">
-                            <h3><i class="fa fa-lock"></i> Login:</h3>
-                        </div>
+                      <form action="/blog/rest/user/logger.php" method="post">
+                          <!--Header-->
+                          <div class="form-header text-center  purple  blue-grey lighten-5">
+                              <h3><i class="fa fa-lock"></i> Login:</h3>
+                          </div>
 
-                        <!--Body-->
-                        <div class="md-form" style="padding:10px;">
-                            <i class="fa fa-envelope prefix"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">usuario</label>
-                        </div>
+                          <!--Body-->
+                          <div class="md-form" style="padding:10px;">
+                              <i class="fa fa-envelope prefix"></i>
+                              <input type="text" id="form2" name="login" class="form-control">
+                              <label for="form2">usuario</label>
+                          </div>
 
-                        <div class="md-form" style="padding:10px;">
-                            <i class="fa fa-lock prefix"></i>
-                            <input type="password" id="form4" class="form-control">
-                            <label for="form4">senha</label>
-                        </div>
+                          <div class="md-form" style="padding:10px;">
+                              <i class="fa fa-lock prefix"></i>
+                              <input type="password" id="form4" name="password" class="form-control">
+                              <label for="form4">senha</label>
+                          </div>
 
-                        <div class="text-center">
-                            <button class="btn waves-effect blue-grey lighten-1">Login</button>
-                        </div>
+                          <div class="text-center">
+                              <button type="submit" class="btn waves-effect blue-grey lighten-1">Login</button>
+                          </div>
+                      </form>
 
                     </div>
 

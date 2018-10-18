@@ -2,6 +2,9 @@
 <html lang="pt">
 
 <head>
+     <!-- verifica se existe usuario logado-->
+     <?php include_once('../config/logged.php'); ?>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -55,11 +58,11 @@
                    <ul class="navbar-nav nav-flex-icons">
                        <li class="nav-item">
                            <a href="#" class="nav-link waves-effect">
-                               <i class="fa fa-user"></i>Jairo.Leite
+                               <i class="fa fa-user"></i><?php echo $userName; ?>
                            </a>
                        </li>
                        <li class="nav-item">
-                           <a href="#" class="nav-link waves-effect">
+                           <a href="/blog/admin/logout.php" class="nav-link waves-effect">
                             <i class="fa fa-sign-out"></i>Sair
                            </a>
 

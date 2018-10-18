@@ -15,13 +15,14 @@ class User {
         $this->conn = $db;
     }
 
-    function listUsers() {
-         // query de listar usuários
-        $query = "SELECT * FROM usuario";
+    function logger($login, $password) {
+         // query verifica se o usuario existe com esssa senha
+        $query = " select * from usuario where login = '".$login."' and senha = '".$password."' ";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query
         $stmt->execute();
         return $stmt;
      }
+
 }
