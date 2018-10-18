@@ -9,11 +9,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="./css/mdb.css" rel="stylesheet">
+    <link href="../css/mdb.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,6 +50,21 @@
                         </li>
                    </ul>
 
+                   <!-- Right -->
+                   <ul class="navbar-nav nav-flex-icons">
+                       <li class="nav-item">
+                           <a href="#" class="nav-link waves-effect">
+                               <i class="fa fa-user"></i>Jairo.Leite
+                           </a>
+                       </li>
+                       <li class="nav-item">
+                           <a href="#" class="nav-link waves-effect">
+                            <i class="fa fa-sign-out"></i>Sair
+                           </a>
+
+                       </li>
+                  </ul>
+
                 </div>
 
             </div>
@@ -77,23 +92,23 @@
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
-    <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="../js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="./js/mdb.min.js"></script>
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
     <!-- vuejs framework de front-end -->
-    <script type="text/javascript" src="./vuejs/vue.2.5.17.min.js"></script>
+    <script type="text/javascript" src="../vuejs/vue.2.5.17.min.js"></script>
     <!-- axios cliente rest-->
-    <script type="text/javascript" src="./js/axios.0.18.0.min.js"></script>
+    <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
     <!-- index do vue-->
-    <script type="text/javascript" src="./vuejs/admin/index.js"></script>
+    <script type="text/javascript" src="../vuejs/admin/index.js"></script>
 
     <!-- Initializations -->
     <script type="text/javascript">
-        // Animations initialization 
+        // Animations initialization
         new WOW().init();
     </script>
 </body>
