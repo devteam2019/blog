@@ -132,7 +132,7 @@
           <div class="modal-content">
 
               <div class="modal-header">
-                <p class="heading lead">Modal Info</p>
+                <p class="heading lead">Criar Artigo</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true" class="white-text">×</span>
@@ -140,7 +140,20 @@
               </div>
 
               <div class="modal-body">
-                ...
+
+                <!-- Material input -->
+                <div class="md-form">
+                  <input type="text" id="form1" class="form-control">
+                  <label for="form1" >Titulo</label>
+                </div>
+                <div class="md-form">
+                  <input type="date" id="form1" class="form-control">
+                  <label for="form1" ></label>
+                </div>
+                <div class="form-group">
+                  <ckeditor v-model="content"></ckeditor>
+                </div>
+
               </div>
 
               <div class="modal-footer">
@@ -171,6 +184,8 @@
     <script type="text/javascript" src="../vuejs/vue.2.5.17.min.js"></script>
     <!-- axios cliente rest-->
     <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
+    <!-- ckeditor-->
+    <script type="text/javascript" src="../js/ckeditor.js"></script>
     <!-- index do vue-->
     <script type="text/javascript" src="../vuejs/admin/index.js"></script>
 
@@ -178,7 +193,9 @@
     <script type="text/javascript">
         // Animations initialization
         new WOW().init();
+
     </script>
+
 </body>
 
 </html>
