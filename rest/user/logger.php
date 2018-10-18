@@ -26,7 +26,7 @@ $num = $stmt->rowCount();
 if($num > 0) {
   $_SESSION['login'] = $login;
   $_SESSION['password'] = $password;
-  header('location:/blog/admin/index.php');
+  header('location:/blog/admin/');
 //echo "deu certo";
 }
  else {
