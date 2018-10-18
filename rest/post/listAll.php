@@ -22,7 +22,7 @@ if($num > 0) {
     $post_arr = array();
     $post_arr["posts"] = array();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         $post_item = array(
             "id" => $row['id'],
