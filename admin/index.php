@@ -90,8 +90,8 @@
                   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulacao de Artigos</h3>
                         <div class="card-body">
                               <div id="table" class="table-editable">
-                                <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
-                                      aria-hidden="true"></i></a></span>
+                                <span class="table-add float-right mb-3 mr-2"><a href="#!" data-toggle="modal" data-target="#basicExampleModal"
+                                   class="text-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></span>
                                 <table class="table table-bordered table-responsive-md table-striped text-center">
                                   <tr>
                                     <th class="text-center">#</th>
@@ -123,6 +123,38 @@
             <!--Section: Cards-->
 
         </div>
+
+    <!-- modal de criacao de post-->
+
+      <!-- Modal -->
+      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg modal-notify modal-info" role="document">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                <p class="heading lead">Modal Info</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" class="white-text">×</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                ...
+              </div>
+
+              <div class="modal-footer">
+                <a type="button" class="btn btn-info waves-effect waves-light">Salvar
+                  <i class="fa fa-diamond ml-1"></i>
+                </a>
+                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancelar</a>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- fim modal-->
+
     </main>
     <!--Main layout-->
 
