@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Admin</title>
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.png" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -82,10 +84,7 @@
        <main id="app" class="mt-5 pt-5">
 
            <div class="container">
-            
-           <div v-if="success" class="alert alert-success" role="alert">
-                {{message}}
-           </div>
+                      
            <div v-if="error" class="alert alert-danger" role="alert">
                 {{message}}
            </div>
@@ -96,14 +95,39 @@
                   <div class="card">
                   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Categoria</h3>
                         <div class="card-body">
-                            <div class="md-form">
-                                <input type="text" id="form1" v-model="name" class="form-control">
-                                <label for="form1" >Nome</label>
-                            </div>
-                            <div >
-                               <button type="button" class="btn btn-info btn-rounded btn-sm" @click="clickSave">Salvar</button>
-                            </div>
                             
+                            <div class="md-form input-group">
+                                <input type="text" class="form-control" v-model="name" placeholder="Nome" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-info waves-effect btn-sm m-0" 
+                                    @click="clickSave" type="button">Adicionar</button>
+                                </div>
+                            </div>
+
+                            <div class="md-form">
+                                <div v-if="loading">
+                                   <img src="../img/loading.gif" width="200px">
+                                </div>
+                                <div v-else>
+                                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Nome</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                        <tr v-for="category in categorysData">
+                                            <td class="pt-3-half" contenteditable="true">{{category.id}}</td>
+                                            <td class="pt-3-half" contenteditable="true">{{category.name}}</td>
+                                            <td style="width:80px;">
+                                                <span class="table-remove">
+                                                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0" @click="clickDelete(category)">Delete</button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                                                                             
                        </div>
                   </div>
                   <!-- Editable table -->

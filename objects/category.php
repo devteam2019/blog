@@ -26,6 +26,30 @@ class Category {
         return false;
      }
 
+     function delete($id) {
+        // query de exclui categoria
+       $query = "delete from ".$this->table_name." where id = ".$id."";
+       // prepare query statement
+       $stmt = $this->conn->prepare($query);
+       // execute query
+       if($stmt->execute()) {
+           return true;
+       }
+       return false;
+    }
+
+     function getByName($name) {
+        // query de lista categoria categoria
+       $query = "select * from ".$this->table_name." where nome = '".$name."'";
+       // prepare query statement
+       $stmt = $this->conn->prepare($query);
+       // execute query
+       $stmt->execute();
+       $num = $stmt->rowCount();
+       
+       return $num > 0;
+    }
+
      function listAll() {
         // query de lista categoria categoria
        $query = "select * from ".$this->table_name." ";
