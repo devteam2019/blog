@@ -1,6 +1,6 @@
 //componente de ediacao
 Vue.component('ckeditor', {
-  template: `<div class="ckeditor" style="padding:8px;"><textarea :id="id" :value="value"></textarea></div>`,
+  template: `<div class="ckeditor"><textarea :id="id" :value="value"></textarea></div>`,
   props: {
       value: {
         type: String
@@ -39,7 +39,7 @@ Vue.component('ckeditor', {
 		},
 		mounted () {
       const ckeditorId = this.id
-      //console.log(this.value)
+      console.log(this.value)
       const ckeditorConfig = {
         toolbar: this.toolbar,
         language: this.language,
@@ -70,5 +70,4 @@ new Vue({
   data: {
     content: ''
   }
-
 });

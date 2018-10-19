@@ -45,17 +45,14 @@
 
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                      <!--  <li class="nav-item active">
-                            <a class="nav-link waves-effect" href="#">DashBoard</a>
-                        </li>
-                       -->
-                        <li class="nav-item active">
-                            <a class="nav-link waves-effect" href="#">Artigos</a>
-                        </li>
 
                         <li class="nav-item active">
-                            <a class="nav-link waves-effect" href="#">Categoria</a>
+                            <a class="nav-link waves-effect" href="index.php">Artigos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="category.php">Categoria</a>
+                        </li>
+
                    </ul>
 
                    <!-- Right -->
@@ -154,9 +151,19 @@
                   <input type="date" id="form1" class="form-control">
                   <label for="form1" ></label>
                 </div>
+
                 <div class="md-form pt-2">
                   <span>Conteúdo</span>
                   <ckeditor v-model="content"></ckeditor>
+                </div>
+
+                <div class="md-form">
+                  <select class="mdb-select md-form">
+                      <option value="" disabled selected>Selecionar a Categoria</option>
+                      <option value="1">Option 1</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                  </select>
                 </div>
 
               </div>
