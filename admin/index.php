@@ -52,6 +52,10 @@
                         <li class="nav-item active">
                             <a class="nav-link waves-effect" href="#">Artigos</a>
                         </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect" href="#">Categoria</a>
+                        </li>
                    </ul>
 
                    <!-- Right -->
@@ -129,7 +133,7 @@
       <!-- Modal -->
       <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog modal-lg modal-notify modal-info" role="document">
-          <div class="modal-content">
+          <div class="modal-content" style="width:100%">
 
               <div class="modal-header">
                 <p class="heading lead">Criar Artigo</p>
@@ -150,7 +154,8 @@
                   <input type="date" id="form1" class="form-control">
                   <label for="form1" ></label>
                 </div>
-                <div class="form-group">
+                <div class="md-form pt-2">
+                  <span>Conteúdo</span>
                   <ckeditor v-model="content"></ckeditor>
                 </div>
 
@@ -185,7 +190,7 @@
     <!-- axios cliente rest-->
     <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
     <!-- ckeditor-->
-    <script type="text/javascript" src="../js/ckeditor.js"></script>
+    <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
     <!-- index do vue-->
     <script type="text/javascript" src="../vuejs/admin/index.js"></script>
 

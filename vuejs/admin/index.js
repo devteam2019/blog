@@ -1,6 +1,6 @@
 //componente de ediacao
 Vue.component('ckeditor', {
-  template: `<div class="ckeditor"><textarea :id="id" :value="value"></textarea></div>`,
+  template: `<div class="ckeditor" style="padding:8px;"><textarea :id="id" :value="value"></textarea></div>`,
   props: {
       value: {
         type: String
@@ -39,7 +39,7 @@ Vue.component('ckeditor', {
 		},
 		mounted () {
       const ckeditorId = this.id
-      console.log(this.value)
+      //console.log(this.value)
       const ckeditorConfig = {
         toolbar: this.toolbar,
         language: this.language,
@@ -68,6 +68,7 @@ Vue.component('ckeditor', {
 new Vue({
   el: '#app',
   data: {
-    content: '<p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipisicing elit. Asperiores facere rem nostrum molestiae. Minus, amet recusandae nam vel explicabo nisi error quaerat magnam excepturi veniam.</p>'
+    content: ''
   }
+
 });
