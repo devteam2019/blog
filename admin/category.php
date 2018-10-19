@@ -82,16 +82,29 @@
        <main id="app" class="mt-5 pt-5">
 
            <div class="container">
-
+            
+           <div v-if="success" class="alert alert-success" role="alert">
+                {{message}}
+           </div>
+           <div v-if="error" class="alert alert-danger" role="alert">
+                {{message}}
+           </div>
             <!--Section: Cards-->
             <section class="text-center">
 
               <!-- Editable table -->
                   <div class="card">
-                  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Categorias</h3>
+                  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Categoria</h3>
                         <div class="card-body">
-
-                        </div>
+                            <div class="md-form">
+                                <input type="text" id="form1" v-model="name" class="form-control">
+                                <label for="form1" >Nome</label>
+                            </div>
+                            <div >
+                               <button type="button" class="btn btn-info btn-rounded btn-sm" @click="clickSave">Salvar</button>
+                            </div>
+                            
+                       </div>
                   </div>
                   <!-- Editable table -->
 
@@ -119,6 +132,8 @@
     <script type="text/javascript" src="../vuejs/vue.2.5.17.min.js"></script>
     <!-- axios cliente rest-->
     <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
+     <!-- regra de categoria-->
+     <script type="text/javascript" src="../vuejs/admin/category.js"></script>
 
 
 </body>
