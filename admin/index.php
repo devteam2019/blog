@@ -148,20 +148,20 @@
       <b-modal ref="myModalRef" size="lg" hide-footer title="Criar Artigo">
          <div class="d-block">
            
-           <b-alert :show="error" dismissible variant="danger">
+           <b-alert :show="error"  variant="danger">
                     {{message}}
            </b-alert>
 
             <b-form-group label="Título">
                 <b-form-input type="text"
-                            v-model="post.title"
+                            v-model="title"
                             placeholder="Título">
                 </b-form-input>
             </b-form-group>
 
             <b-form-group label="Data">
                 <b-form-input type="date"
-                            v-model="post.date"
+                            v-model="date"
                             placeholder="Data">
                 </b-form-input>
             </b-form-group>
@@ -171,7 +171,7 @@
             </b-form-group>
             
             <b-form-group label="Categoria">
-                <select v-model="post.categoryId"  class="browser-default custom-select">
+                <select v-model="categoryId"  class="browser-default custom-select">
                     <option v-for="category in categorysData" :value="category.id">{{category.name}}</option>
                 </select>
             </b-form-group>
@@ -179,7 +179,7 @@
 
             <div class="form-group">
                 <label for="content">Conteúdo</label>
-                <ckeditor v-model="post.content"></ckeditor>
+                <ckeditor v-model="content"></ckeditor>
             </div>
                            
     
