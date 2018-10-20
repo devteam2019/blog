@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Admin</title>
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.png" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -85,7 +87,9 @@
 
             <!--Section: Cards-->
             <section class="text-center">
-
+              <div v-if="success" class="alert alert-success" role="alert">
+                    {{message}}
+              </div>
               <!-- Editable table -->
                   <div class="card">
                   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulacao de Artigos</h3>
@@ -135,44 +139,57 @@
               <div class="modal-header">
                 <p class="heading lead">Criar Artigo</p>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickClose">
                   <span aria-hidden="true" class="white-text">×</span>
                 </button>
               </div>
 
               <div class="modal-body">
-
-                <!-- Material input -->
-                <div class="md-form">
-                  <input type="text" id="form1" class="form-control">
-                  <label for="form1" >Titulo</label>
-                </div>
-                <div class="md-form">
-                  <input type="date" id="form1" class="form-control">
-                  <label for="form1" ></label>
+                
+                <div v-if="error" class="alert alert-danger" role="alert">
+                    {{message}}
                 </div>
 
-                <div class="md-form pt-2">
-                  <span>Conteúdo</span>
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" v-model="title">
+                </div>
+                <div class="form-group">
+                    <label for="date">Data</label>
+                    <input type="date" class="form-control" v-model="date">
+                </div>
+                <div class="form-group">
+                    <label for="date">Capa do Artigo</label>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" @change="onUploadFile" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{nameFile}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select v-model="categoryId"  class="browser-default custom-select">
+                        <option v-for="category in categorysData" :value="category.id">{{category.name}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="content">Conteúdo</label>
                   <ckeditor v-model="content"></ckeditor>
                 </div>
-
-                <div class="md-form">
-                  <select class="mdb-select md-form">
-                      <option value="" disabled selected>Selecionar a Categoria</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                  </select>
-                </div>
-
+                              
               </div>
 
               <div class="modal-footer">
-                <a type="button" class="btn btn-info waves-effect waves-light">Salvar
+                <a type="button" class="btn btn-info waves-effect waves-light" @click="saveArticle">Salvar
                   <i class="fa fa-diamond ml-1"></i>
                 </a>
-                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancelar</a>
+                <a type="button" class="btn btn-outline-info waves-effect" @click="clickCancel" data-dismiss="modal">Cancelar</a>
              </div>
           </div>
         </div>

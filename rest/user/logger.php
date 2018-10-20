@@ -24,12 +24,17 @@ $num = $stmt->rowCount();
 
 // se existir algum resultado mostra
 if($num > 0) {
-  $_SESSION['login'] = $login;
-  $_SESSION['password'] = $password;
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      $_SESSION['id'] = $row['id'];
+      $_SESSION['login'] = $row['login'];
+      $_SESSION['password'] = $row['senha'];
+    }
+
   header('location:/blog/admin/');
 //echo "deu certo";
 }
  else {
+   unset ($_SESSION['id']);
    unset ($_SESSION['login']);
    unset ($_SESSION['password']);
    header('location:/blog/admin/login.php?error=1');

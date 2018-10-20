@@ -29,6 +29,7 @@ if($num > 0) {
             "titulo" => $row['titulo'],
             "conteudo" => html_entity_decode($row['conteudo']),
             "data" => $row['data'],
+            "image" => $row['img'],
             "usuario_id" => $row['usuario_id'],
             "categoria_id" => $row['categoria_id']
         );

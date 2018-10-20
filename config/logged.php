@@ -12,6 +12,7 @@ if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['password']) == 
   header('location:/blog/admin/login.php');
 }
 else {
+   $userId = $_SESSION['id'];
    $userName = $_SESSION['login'];
 }
 
