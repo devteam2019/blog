@@ -62,7 +62,7 @@ new Vue({
     postsData: [],
     post: {
       title: null,
-      date: null,
+      date: '10-20-2018',
       content: null,
       userId: null,
       categoryId: null,
@@ -72,7 +72,9 @@ new Vue({
     selectedFile: null,
     message: '',
     error: false,
-    success: false
+    success: false,
+    isCreate: true,
+    isUpdate: false
   },
 
   mounted() {
@@ -143,7 +145,7 @@ new Vue({
         if (this.selectedFile != null) {
           imageName = this.selectedFile.name;
         }
-
+        
         var data = {
             title: this.post.title,
             date: this.post.date,
@@ -172,9 +174,17 @@ new Vue({
     },
 
     clickCreatePost: function () {
+        // clearInstance(this);
+        isCreate = true;
+        isUpdate = false;
         this.$refs.myModalRef.show();
-    } 
-       
+    },
+    
+    clickEdit: function(post) {
+      
+    },
+
+   
   }
 
 });

@@ -46,5 +46,24 @@ class Post {
        return false;
     }
 
+    function update($id, $title, $date, $content, $image, $userId, $categoryId) {
+        // query de listar usuários
+       $query = "update post set titulo = '".$title."', 
+                                 conteudo = '".$content."', 
+                                 data = '".$date."', 
+                                 img = '".$image."', 
+                                 usuario_id = ".$userId.", 
+                                 categoria_id = ".$categoryId." 
+                where id = ".$id.""; 
+       
+       // prepare query statement
+       $stmt = $this->conn->prepare($query);
+       // execute query
+       if($stmt->execute()) {
+          return true;
+       }
+       return false;
+    }
+
      
 }

@@ -122,10 +122,12 @@
                                         <td class="pt-3-half" contenteditable="true">{{post.userName}}</td>
                                         <td class="pt-3-half" contenteditable="true">{{post.categoryName}}</td>
                                         <td>
-                                        <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0">Editar</button></span>
+                                        <span class="table-remove"><button type="button" 
+                                        class="btn btn-info btn-rounded btn-sm my-0" @click="clickEdit(post.content)">Conteúdo</button></span>
                                         </td>
                                         <td>
-                                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
+                                        <span class="table-remove"><button type="button" 
+                                        class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
                                         </td>
                                     </tr>
                                     </table>
@@ -184,7 +186,8 @@
                            
     
       </div>
-      <b-btn class="mt-3" variant="info" block @click="saveArticle">Salvar</b-btn>
+      <b-btn  class="mt-3" variant="info" block @click="saveArticle">Salvar</b-btn>
+
     </b-modal>
 
       <!-- fim modal-->
