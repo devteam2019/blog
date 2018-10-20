@@ -179,6 +179,7 @@ new Vue({
           this.listPosts();      
         }
       })
+
     },
 
     clickCreatePost: function () {

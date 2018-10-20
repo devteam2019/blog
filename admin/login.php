@@ -51,7 +51,7 @@
                           <!--Body-->
                           <div class="md-form" style="padding:10px;">
                               <i class="fa fa-envelope prefix"></i>
-                              <input type="text" id="form2" name="login" class="form-control">
+                              <input type="text" id="form2" name="login" autofocus class="form-control">
                               <label for="form2">usuario</label>
                           </div>
 
