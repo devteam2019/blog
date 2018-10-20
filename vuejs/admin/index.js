@@ -31,7 +31,7 @@ Vue.component('ckeditor', {
       default: ''
     }
   },
-
+ 
   mounted() {
     const ckeditorId = this.id
     // console.log(this.value)
@@ -60,13 +60,15 @@ new Vue({
     loading: false,
     categorysData: [],
     postsData: [],
-    title: null,
-    date: null,
-    content: null,
-    userId: null,
-    categoryId: null,
-    userName: null,
-    categoryName: null,
+    post: {
+      title: null,
+      date: null,
+      content: null,
+      userId: null,
+      categoryId: null,
+      userName: null,
+      categoryName: null
+    },
     selectedFile: null,
     message: '',
     error: false,
@@ -74,12 +76,12 @@ new Vue({
   },
 
   mounted() {
-    axios.get("/blog/rest/category/listAll.php").then(response => {
-      this.categorysData = response.data.categorys;
-    }),
+      axios.get("/blog/rest/category/listAll.php").then(response => {
+        this.categorysData = response.data.categorys;
+      }),
 
       axios.get("/blog/rest/user/getUserLogger.php").then(response => {
-        this.userId = response.data.userId;
+        this.post.userId = response.data.userId;
       }),
 
       this.listPosts();
@@ -115,78 +117,74 @@ new Vue({
     },
 
     saveArticle: function () {
-      //validações
-      if (this.title == '' || this.title == null) {
-        this.message = 'O título é obrigatório!';
-        this.error = true;
-        return;
-      }
-      if (this.date == '' || this.date == null) {
-        this.message = 'A data do artigo é obrigatório!';
-        this.error = true;
-        return;
-      }
-      if (this.categoryId == '' || this.categoryId == null) {
-        this.message = 'A categoria é obrigatório!';
-        this.error = true;
-        return;
-      }
-      if (this.content == '' || this.content == null) {
-        this.message = 'O conteúdo do artigo é obrigatório!';
-        this.error = true;
-        return;
-      }
-
-      var imageName = null;
-      if (this.selectedFile != null) {
-        imageName = this.selectedFile.name;
-      }
-
-
-      var data = {
-        title: this.title,
-        date: this.date,
-        content: this.content,
-        image: null,
-        userId: this.userId,
-        categoryId: this.categoryId
-      }
-
-      console.log(data);
-
-      axios.post("/blog/rest/post/save.php", data).then(response => {
-        if (response.data.error) {
-          this.message = response.data.message;
+        //validações
+        if (this.post.title == '' || this.post.title == null) {
+          this.message = 'O título é obrigatório!';
           this.error = true;
-          this.success = false;
+          return;
         }
-        else {
-          this.message = response.data.message;
-          this.success = true;
-          this.error = false;
-          this.$refs.myModalRef.hide();
-          clearInstance(this);
-          this.listPosts();
+        if (this.post.date == '' || this.post.date == null) {
+          this.message = 'A data do artigo é obrigatório!';
+          this.error = true;
+          return;
         }
-      })
+        if (this.post.categoryId == '' || this.post.categoryId == null) {
+          this.message = 'A categoria é obrigatório!';
+          this.error = true;
+          return;
+        }
+        if (this.post.content == '' || this.post.content == null) {
+          this.message = 'O conteúdo do artigo é obrigatório!';
+          this.error = true;
+          return;
+        }
+
+        var imageName = null;
+        if (this.selectedFile != null) {
+          imageName = this.selectedFile.name;
+        }
+
+        var data = {
+            title: this.post.title,
+            date: this.post.date,
+            content: this.post.content,
+            image: imageName,
+            userId: this.post.userId,
+            categoryId: this.post.categoryId
+        }
+
+        axios.post("/blog/rest/post/save.php", data).then(response => {
+          if (response.data.error) {
+            this.message = response.data.message;
+            this.error = true;
+            this.success = false;
+          }
+          else {
+            this.message = response.data.message;
+            this.success = true;
+            this.error = false;
+            this.$refs.myModalRef.hide();
+            clearInstance(this);
+            this.listPosts();      
+          }
+        })
 
     },
 
     clickCreatePost: function () {
-      this.$refs.myModalRef.show();
-    },
-
-
+        this.$refs.myModalRef.show();
+    } 
+       
   }
 
 });
 
 //çimpa formulário de artigo
 function clearInstance(vue) {
-  vue.title = null;
-  vue.date = null;
-  vue.content = null;
-  vue.categoryId = null;
+  vue.post.title = null;
+  vue.post.date = null;
+  vue.post.content = null;
+  vue.post.categoryId = null;
   vue.selectedFile = null;
 
   vue.error = false;
