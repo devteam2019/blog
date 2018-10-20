@@ -21,7 +21,11 @@ class Post {
 
     function listAllPosts() {
          // query de listar usuários
-        $query = "SELECT * FROM ".$this->table_name." ";
+        $query = "SELECT p.id, p.titulo, p.conteudo, p.data, p.img, p.usuario_id, p.categoria_id, 
+                         u.login userName, ct.nome categoryName   
+                        FROM ".$this->table_name." p 
+                            inner join usuario u on u.id = p.usuario_id 
+                            inner join categoria ct on ct.id = p.categoria_id";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query

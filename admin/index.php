@@ -19,6 +19,9 @@
     <link href="../css/mdb.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="../css/style.css" rel="stylesheet">
+    <!-- links diretos -->
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-vue.css"/>
 </head>
 
 <body>
@@ -87,38 +90,47 @@
 
             <!--Section: Cards-->
             <section class="text-center">
-              <div v-if="success" class="alert alert-success" role="alert">
+            <b-alert :show="success" dismissible variant="success">
                     {{message}}
-              </div>
+            </b-alert>
               <!-- Editable table -->
                   <div class="card">
                   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulacao de Artigos</h3>
                         <div class="card-body">
                               <div id="table" class="table-editable">
-                                <span class="table-add float-right mb-3 mr-2"><a href="#!" data-toggle="modal" data-target="#basicExampleModal"
+                                <span class="table-add float-right mb-3 mr-2"><a href="#!" @click="clickCreatePost"
                                    class="text-success"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a></span>
-                                <table class="table table-bordered table-responsive-md table-striped text-center">
-                                  <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Titulo</th>
-                                    <th class="text-center">Conteudo</th>
-                                    <th class="text-center">Data</th>
-                                    <th class="text-center">Editar</th>
-                                    <th class="text-center">Delete</th>
-                                  </tr>
-                                  <tr>
-                                     <td class="pt-3-half" contenteditable="true">1</td>
-                                     <td class="pt-3-half" contenteditable="true">Teste</td>
-                                     <td class="pt-3-half" contenteditable="true">Teste</td>
-                                     <td class="pt-3-half" contenteditable="true">18/10/2018</td>
-                                     <td>
-                                       <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0">Editar</button></span>
-                                     </td>
-                                     <td>
-                                       <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
-                                     </td>
-                                 </tr>
-                                </table>
+                                
+                                <div v-if="loading">
+                                   <img src="../img/loading.gif" width="200px">
+                                </div>   
+                                <div v-else>
+                                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Titulo</th>
+                                        <th class="text-center">Data</th>
+                                        <th class="text-center">Autor</th>
+                                        <th class="text-center">Categoria</th>
+                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Delete</th>
+                                    </tr>
+                                    <tr v-for="post in postsData">
+                                        <td class="pt-3-half" contenteditable="true">{{post.id}}</td>
+                                        <td class="pt-3-half" contenteditable="true">{{post.title}}</td>
+                                        <td class="pt-3-half" contenteditable="true">{{post.date}}</td>
+                                        <td class="pt-3-half" contenteditable="true">{{post.userName}}</td>
+                                        <td class="pt-3-half" contenteditable="true">{{post.categoryName}}</td>
+                                        <td>
+                                        <span class="table-remove"><button type="button" class="btn btn-info btn-rounded btn-sm my-0">Editar</button></span>
+                                        </td>
+                                        <td>
+                                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </div>
+                                
                               </div>
                         </div>
                   </div>
@@ -130,72 +142,52 @@
         </div>
 
     <!-- modal de criacao de post-->
-
+   
       <!-- Modal -->
-      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog modal-lg modal-notify modal-info" role="document">
-          <div class="modal-content" style="width:100%">
-
-              <div class="modal-header">
-                <p class="heading lead">Criar Artigo</p>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickClose">
-                  <span aria-hidden="true" class="white-text">×</span>
-                </button>
-              </div>
-
-              <div class="modal-body">
-                
-                <div v-if="error" class="alert alert-danger" role="alert">
+     
+      <b-modal ref="myModalRef" size="lg" hide-footer title="Criar Artigo">
+         <div class="d-block">
+           
+           <b-alert :show="error" dismissible variant="danger">
                     {{message}}
-                </div>
+           </b-alert>
 
-                <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" class="form-control" v-model="title">
-                </div>
-                <div class="form-group">
-                    <label for="date">Data</label>
-                    <input type="date" class="form-control" v-model="date">
-                </div>
-                <div class="form-group">
-                    <label for="date">Capa do Artigo</label>
-                    <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                            <span class="input-group-text">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" @change="onUploadFile" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">{{nameFile}}</label>
-                        </div>
-                    </div>
-                </div>
+            <b-form-group label="Título">
+                <b-form-input type="text"
+                            v-model="post.title"
+                            placeholder="Título">
+                </b-form-input>
+            </b-form-group>
 
-                <div class="form-group">
-                    <label for="category">Categoria</label>
-                    <select v-model="categoryId"  class="browser-default custom-select">
-                        <option v-for="category in categorysData" :value="category.id">{{category.name}}</option>
-                    </select>
-                </div>
+            <b-form-group label="Data">
+                <b-form-input type="date"
+                            v-model="post.date"
+                            placeholder="Data">
+                </b-form-input>
+            </b-form-group>
+            
+            <b-form-group label="Capa">
+                <b-form-file v-model="selectedFile" @change="onUploadFile" :state="Boolean(selectedFile)" placeholder="Selecione a capa do artigo..."></b-form-file>
+            </b-form-group>
+            
+            <b-form-group label="Categoria">
+                <select v-model="post.categoryId"  class="browser-default custom-select">
+                    <option v-for="category in categorysData" :value="category.id">{{category.name}}</option>
+                </select>
+            </b-form-group>
+          
 
-                <div class="form-group">
-                  <label for="content">Conteúdo</label>
-                  <ckeditor v-model="content"></ckeditor>
-                </div>
-                              
-              </div>
-
-              <div class="modal-footer">
-                <a type="button" class="btn btn-info waves-effect waves-light" @click="saveArticle">Salvar
-                  <i class="fa fa-diamond ml-1"></i>
-                </a>
-                <a type="button" class="btn btn-outline-info waves-effect" @click="clickCancel" data-dismiss="modal">Cancelar</a>
-             </div>
-          </div>
-        </div>
+            <div class="form-group">
+                <label for="content">Conteúdo</label>
+                <ckeditor v-model="post.content"></ckeditor>
+            </div>
+                           
+    
       </div>
+      <b-btn class="mt-3" variant="info" block @click="saveArticle">Salvar</b-btn>
+    </b-modal>
 
-    <!-- fim modal-->
+      <!-- fim modal-->
 
     </main>
     <!--Main layout-->
@@ -211,6 +203,11 @@
     <script type="text/javascript" src="../js/mdb.min.js"></script>
     <!-- vuejs framework de front-end -->
     <script type="text/javascript" src="../vuejs/vue.2.5.17.min.js"></script>
+    
+    <!-- links diretos-->
+    <script type="text/javascript" src="../js/polyfill.min.js"></script>
+    <script type="text/javascript" src="../vuejs/bootstrap-vue.js"></script>
+
     <!-- axios cliente rest-->
     <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
     <!-- ckeditor-->

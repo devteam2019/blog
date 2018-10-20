@@ -26,12 +26,14 @@ if($num > 0) {
 
         $post_item = array(
             "id" => $row['id'],
-            "titulo" => $row['titulo'],
-            "conteudo" => html_entity_decode($row['conteudo']),
-            "data" => $row['data'],
+            "title" => $row['titulo'],
+            "content" => html_entity_decode($row['conteudo']),
+            "date" => $row['data'],
             "image" => $row['img'],
-            "usuario_id" => $row['usuario_id'],
-            "categoria_id" => $row['categoria_id']
+            "userId" => $row['usuario_id'],
+            "categoryId" => $row['categoria_id'],
+            "userName" => $row['userName'],
+            "categoryName" => $row['categoryName']
         );
 
         array_push($post_arr["posts"], $post_item);
