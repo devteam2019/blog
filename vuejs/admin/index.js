@@ -76,11 +76,11 @@ new Vue({
   },
 
   mounted() {
-      axios.get("/blog/rest/category/listAll.php").then(response => {
+      axios.get("/rest/category/listAll.php").then(response => {
         this.categorysData = response.data.categorys;
       }),
 
-      axios.get("/blog/rest/user/getUserLogger.php").then(response => {
+      axios.get("/rest/user/getUserLogger.php").then(response => {
         this.post.userId = response.data.userId;
       }),
 
@@ -92,7 +92,7 @@ new Vue({
 
     listPosts() {
       this.loading = true;
-      axios.get("/blog/rest/post/listAll.php").then(response => {
+      axios.get("/rest/post/listAll.php").then(response => {
         this.postsData = response.data.posts;
         this.loading = false;
       })
@@ -110,7 +110,7 @@ new Vue({
         const data = new FormData();
         data.append('fileImage', this.selectedFile, this.selectedFile.name);
 
-        axios.post("/blog/rest/post/uploadFile.php", data).then(response => {
+        axios.post("/rest/post/uploadFile.php", data).then(response => {
           console.log(response.data);
         })
       }
@@ -153,7 +153,7 @@ new Vue({
             categoryId: this.post.categoryId
         }
 
-        axios.post("/blog/rest/post/save.php", data).then(response => {
+        axios.post("/rest/post/save.php", data).then(response => {
           if (response.data.error) {
             this.message = response.data.message;
             this.error = true;

@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-block">
 
-                      <form action="/blog/rest/user/logger.php" method="post">
+                      <form action="/rest/user/logger.php" method="post">
                           <!--Header-->
                           <div class="form-header text-center  purple  blue-grey lighten-5">
                               <h3><i class="fa fa-lock"></i> Login:</h3>

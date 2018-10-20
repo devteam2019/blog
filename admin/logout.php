@@ -4,6 +4,6 @@
 
   unset($_SESSION['login']);
   unset($_SESSION['password']);
-  header('location:/blog/admin/login.php');
+  header('location:/admin/login.php');
 
 ?>

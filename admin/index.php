@@ -68,7 +68,7 @@
                            </a>
                        </li>
                        <li class="nav-item">
-                           <a href="/blog/admin/logout.php" class="nav-link waves-effect">
+                           <a href="/admin/logout.php" class="nav-link waves-effect">
                             <i class="fa fa-sign-out"></i>Sair
                            </a>
 

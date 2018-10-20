@@ -30,14 +30,14 @@ if($num > 0) {
       $_SESSION['password'] = $row['senha'];
     }
 
-  header('location:/blog/admin/');
+  header('location:/admin/');
 //echo "deu certo";
 }
  else {
    unset ($_SESSION['id']);
    unset ($_SESSION['login']);
    unset ($_SESSION['password']);
-   header('location:/blog/admin/login.php?error=1');
+   header('location:/admin/login.php?error=1');
   //echo "errou!!!";
 }
 

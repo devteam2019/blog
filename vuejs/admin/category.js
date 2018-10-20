@@ -16,7 +16,7 @@ new Vue({
 
     listAllCategory() {
         this.loading = true;
-        axios.get("/blog/rest/category/listAll.php").then(response => {
+        axios.get("/rest/category/listAll.php").then(response => {
           this.categorysData = response.data.categorys;
           this.loading = false;
         })
@@ -32,7 +32,7 @@ new Vue({
           return;
       }
 
-      axios.post("/blog/rest/category/save.php", {name: this.name}).then(response => {
+      axios.post("/rest/category/save.php", {name: this.name}).then(response => {
         if(response.data.error) {
            this.message = response.data.message;
            this.error = true;
@@ -48,7 +48,7 @@ new Vue({
 
     clickDelete: function(category) {
       this.error = false;
-      axios.post("/blog/rest/category/remove.php", {id: category.id}).then(response => {
+      axios.post("/rest/category/remove.php", {id: category.id}).then(response => {
         if(!response.data.error) {
            this.listAllCategory();
         }

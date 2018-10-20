@@ -9,7 +9,7 @@ session_start();
 if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['password']) == true)) {
   unset($_SESSION['login']);
   unset($_SESSION['password']);
-  header('location:/blog/admin/login.php');
+  header('location:/admin/login.php');
 }
 else {
    $userId = $_SESSION['id'];
