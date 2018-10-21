@@ -128,7 +128,7 @@
                                         <td class="pt-3-half" contenteditable="true">
                                             <label class="switch">
                                                 <input style="width: 48px; height: 20px;" 
-                                                 type="checkbox" @change="changePublic" :checked="post.public == 1 ? true : false" >
+                                                 type="checkbox" @change="changePublic(post, $event)" :checked="post.public == 1 ? true : false" >
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>
@@ -172,6 +172,13 @@
                 </b-form-input>
             </b-form-group>
 
+            <b-form-group label="SubTítulo">
+                <b-form-input type="text"
+                            v-model="post.subTitle"
+                            placeholder="SubTítulo">
+                </b-form-input>
+            </b-form-group>
+
             <b-form-group label="Data">
                 <b-form-input type="date"
                             v-model="post.date"
@@ -180,7 +187,7 @@
             </b-form-group>
             
             <b-form-group label="Capa">
-                <b-form-file v-model="selectedFile" @change="onUploadFile" :state="Boolean(selectedFile)" placeholder="Selecione a capa do artigo..."></b-form-file>
+                <b-form-file v-model="selectedFile"  ref="fileinput" @change="onUploadFile" :state="Boolean(selectedFile)" placeholder="Selecione a capa do artigo..."></b-form-file>
             </b-form-group>
             
             <b-form-group label="Categoria">

@@ -18,11 +18,12 @@ $title = $_POST['title'];
 $date = $_POST['date'];
 $content = $_POST['content'];
 $image = $_POST['image'];
+$subTitle = $_POST['subTitle'];
 $userId = $_POST['userId'];
 $categoryId = $_POST['categoryId'];
 
 
-if(!isset($title) || !isset($date) || !isset($content) || !isset($userId) || !isset($categoryId)) {
+if(!isset($title) || !isset($subTitle) || !isset($date) || !isset($content) || !isset($userId) || !isset($categoryId)) {
   http_response_code(200);
   echo json_encode(
       array(
@@ -39,7 +40,7 @@ $db = $database->getConnection();
 $post = new Post($db);
 
 // query categoria
-$isCreated = $post->save($title, $date, $content, $image, $userId, $categoryId);
+$isCreated = $post->save($title, $date, $content, $image, $subTitle, $userId, $categoryId);
 
 if($isCreated) {
     // coloca no response 200 de ok

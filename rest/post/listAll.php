@@ -30,6 +30,7 @@ if($num > 0) {
             "content" => html_entity_decode($row['conteudo']),
             "date" => $row['data'],
             "image" => $row['img'],
+            "subTitle" => $row['subtitulo'],
             "userId" => $row['usuario_id'],
             "categoryId" => $row['categoria_id'],
             "public" => $row['publicar'],

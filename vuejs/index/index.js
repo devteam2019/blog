@@ -6,9 +6,8 @@ new Vue({
     postsData: []
   },
   created: function(){
-     axios.get('/rest/post/listAll.php').then(response => {
+     axios.get('/rest/post/listPostsPublics.php').then(response => {
        this.postsData = response.data.posts;
-       console.log(this.postsData);
      });
   }
 

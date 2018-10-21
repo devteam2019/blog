@@ -30,10 +30,17 @@ if($isPublic) {
     // coloca no response 200 de ok
     http_response_code(200);
     // formata para json
-    echo json_encode( 
-        array("message" => "Publicação efetuada com sucesso.",
-        "error" => false)
-    );
+    if($public == 1) {
+        echo json_encode( 
+            array("message" => "Artigo Publicado 😀",
+            "error" => false)
+        );
+     } else {
+        echo json_encode( 
+            array("message" => "Artigo Despublicado 😥",
+            "error" => false)
+        );
+     }
 }
 
 else {
