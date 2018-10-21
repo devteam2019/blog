@@ -33,6 +33,7 @@ new Vue({
       content: null,
       userId: null,
       categoryId: null,
+      public: 0,
       userName: null,
       categoryName: null
     },
@@ -64,6 +65,7 @@ new Vue({
       this.loading = true;
       axios.get("/rest/post/listAll.php").then(response => {
         this.postsData = response.data.posts;
+        // console.log(this.postsData)
         this.loading = false;
       })
     },
@@ -213,6 +215,16 @@ new Vue({
         }
      })
 
+    },
+
+    changePublic: function(event) {
+      console.log(event.target.checked)
+      var public = 0;
+      if(event.target.checked) {
+        public = 1;
+      }
+
+      
     }
 
    

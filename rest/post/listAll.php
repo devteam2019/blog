@@ -32,6 +32,7 @@ if($num > 0) {
             "image" => $row['img'],
             "userId" => $row['usuario_id'],
             "categoryId" => $row['categoria_id'],
+            "public" => $row['publicar'],
             "userName" => $row['userName'],
             "categoryName" => $row['categoryName']
         );

@@ -21,7 +21,7 @@ class Post {
 
     function listAllPosts() {
          // query de listar usuários
-        $query = "SELECT p.id, p.titulo, p.conteudo, p.data, p.img, p.usuario_id, p.categoria_id, 
+        $query = "SELECT p.id, p.titulo, p.conteudo, p.data, p.img, p.usuario_id, p.categoria_id, p.publicar, 
                          u.login userName, ct.nome categoryName   
                         FROM ".$this->table_name." p 
                             inner join usuario u on u.id = p.usuario_id 
@@ -61,6 +61,18 @@ class Post {
     function delete($id) {
         // query altera conteudo artigo
        $query = "delete from ".$this->table_name." where id = ".$id.""; 
+        // prepare query statement
+       $stmt = $this->conn->prepare($query);
+       // execute query
+       if($stmt->execute()) {
+          return true;
+       }
+       return false;
+    }
+
+    function publicArticle($id, $public) {
+        // query altera conteudo artigo
+       $query = "update ".$this->table_name." set publicar = '".$public."' where id = ".$id.""; 
         // prepare query statement
        $stmt = $this->conn->prepare($query);
        // execute query

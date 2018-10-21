@@ -115,6 +115,7 @@
                                         <th class="text-center">Data</th>
                                         <th class="text-center">Autor</th>
                                         <th class="text-center">Categoria</th>
+                                        <th class="text-center">Publicar</th>
                                         <th class="text-center">Editar</th>
                                         <th class="text-center">Delete</th>
                                     </tr>
@@ -124,6 +125,13 @@
                                         <td class="pt-3-half" contenteditable="true">{{post.date}}</td>
                                         <td class="pt-3-half" contenteditable="true">{{post.userName}}</td>
                                         <td class="pt-3-half" contenteditable="true">{{post.categoryName}}</td>
+                                        <td class="pt-3-half" contenteditable="true">
+                                            <label class="switch">
+                                                <input style="width: 48px; height: 20px;" 
+                                                 type="checkbox" @change="changePublic" :checked="post.public == 1 ? true : false" >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
                                         <td>
                                         <span class="table-remove"><button type="button" 
                                         class="btn btn-info btn-rounded btn-sm my-0" @click="clickEdit(post)">Conteúdo</button></span>
