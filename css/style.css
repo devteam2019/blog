@@ -72,3 +72,8 @@
     background-size: 100%;
 }
 
+.img-back {
+    width: 48px;
+    cursor: pointer;
+}
+

@@ -120,6 +120,12 @@ new Vue({
         scroolMessage();
         return;
       }
+      if (this.selectedFile == null) {
+        this.message = 'A capa do artigo é obrigatório!';
+        this.error = true;
+        scroolMessage();
+        return;
+      }
       if (this.post.categoryId == '' || this.post.categoryId == null) {
         this.message = 'A categoria é obrigatório!';
         this.error = true;
