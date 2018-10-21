@@ -101,7 +101,7 @@
                                     <div class="view overlay">
                                         <img v-if="post.image" :src="'./upload/'+post.image" width="100%" height="310px" class="card-img-top" alt="">
                                         <img v-else src="./img/default.png" width="100%" height="310px" class="card-img-top" alt="">
-                                        <a href="#">
+                                        <a @click="clickReadArticle(post)">
                                             <div class="mask rgba-white-slight"></div>
                                         </a>
                                     </div>
