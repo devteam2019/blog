@@ -44,7 +44,7 @@ if($num > 0) {
         );
 
         array_push($post_arr["posts"], $post_item);
-        array_push($post_arr["error"], false);
+        // array_push($post_arr["error"], false);
     }
 
     // coloca no response 200 de ok

@@ -45,13 +45,12 @@ new Vue({
     clickCategory: function (category) {
       this.loading = true;
       this.showListArticle = false;
-      axios.get('/rest/post/listPostsByCategory.php', { nameCategory: category.name }).then(response => {
-        if(response.data.error) {
-          console.log("não veio nada")
-           this.message = response.data.message;
-           this.isInfo = true;
-           //tempo de espera da mensagem
-           messageTimeInstance(this);
+      axios.post('/rest/post/listPostsByCategory.php', { nameCategory: category.name }).then(response => {
+        if (response.data.error) {
+          this.message = response.data.message;
+          this.isInfo = true;
+          //tempo de espera da mensagem
+          messageTimeInstance(this);
         }
         else {
           this.postsData = response.data.posts;
@@ -65,7 +64,7 @@ new Vue({
 })
 
 function messageTimeInstance(vue) {
-  setInterval(function() { 
+  setInterval(function () {
     vue.isInfo = false;
   }, 8000);
 } 
