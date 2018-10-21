@@ -15,19 +15,13 @@ include_once('../../objects/post.php');
 $_POST = json_decode(file_get_contents("php://input"),true);
 
 $id = $_POST['id'];
-$title = $_POST['title'];
-$date = $_POST['date'];
 $content = $_POST['content'];
-$image = $_POST['image'];
-$userId = $_POST['userId'];
-$categoryId = $_POST['categoryId'];
 
-
-if(!isset($title) || !isset($date) || !isset($content) || !isset($userId) || !isset($categoryId)) {
+if(!isset($content)) {
   http_response_code(200);
   echo json_encode(
       array(
-          "message" => "Existem campos obrigatórios vazios.",
+          "message" => "O campo de conteúdo não pode ser vazio!",
           "error" => true)
       );
   exit();  
@@ -40,7 +34,7 @@ $db = $database->getConnection();
 $post = new Post($db);
 
 // query categoria
-$isUpdate = $post->update($id, $title, $date, $content, $image, $userId, $categoryId);
+$isUpdate = $post->update($id, $content);
 
 if($isUpdate) {
     // coloca no response 200 de ok

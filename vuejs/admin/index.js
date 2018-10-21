@@ -1,57 +1,24 @@
-//componente de ediacao
-Vue.component('ckeditor', {
-  template: `<div class="ckeditor"><textarea :id="id" :value="value"></textarea></div>`,
-  props: {
-    value: {
-      type: String
-    },
-    id: {
-      type: String,
-      default: 'editor'
-    },
-    height: {
-      type: String,
-      default: '200px',
-    },
-    toolbar: {
-      type: Array,
-      default: () => [
-        ['Undo', 'Redo'],
-        ['Bold', 'Italic', 'Strike'],
-        ['NumberedList', 'BulletedList'],
-        ['Cut', 'Copy', 'Paste'],
-      ]
-    },
-    language: {
-      type: String,
-      default: 'en'
-    },
-    extraplugins: {
-      type: String,
-      default: ''
-    }
-  },
- 
-  mounted() {
-    const ckeditorId = this.id
-    // console.log(this.value)
-    const ckeditorConfig = {
-      toolbar: this.toolbar,
-      language: this.language,
-      height: this.height,
-      extraPlugins: this.extraplugins
-    }
-    CKEDITOR.replace(ckeditorId, ckeditorConfig)
-    CKEDITOR.instances[ckeditorId].setData(this.value)
-    CKEDITOR.instances[ckeditorId].on('change', () => {
-      let ckeditorData = CKEDITOR.instances[ckeditorId].getData()
-      if (ckeditorData !== this.value) {
-        this.$emit('input', ckeditorData)
-      }
-    })
+Vue.use(VueHtml5Editor, {
+  image: {compress: false},
+  icons: {
+      text: "custom-icon text",
+      color: "custom-icon color",
+      font: "custom-icon font",
+      align: "custom-icon align",
+      list: "custom-icon list",
+      link: "custom-icon link",
+      unlink: "custom-icon unlink",
+      tabulation: "custom-icon table",
+      image: "custom-icon image",
+      "horizontal-rule": "custom-icon hr",
+      eraser: "custom-icon eraser",
+      hr: "custom-icon hr",
+      undo: "custom-icon undo",
+      "full-screen": "custom-icon full-screen",
+      info: "custom-icon info ",
   }
+})
 
-});
 
 //logica
 new Vue({
@@ -62,7 +29,7 @@ new Vue({
     postsData: [],
     post: {
       title: null,
-      date: '10-20-2018',
+      date: null,
       content: null,
       userId: null,
       categoryId: null,
@@ -73,8 +40,9 @@ new Vue({
     message: '',
     error: false,
     success: false,
-    isCreate: true,
-    isUpdate: false
+    editContent: '',
+    editId: null,
+    errorEdit: false
   },
 
   mounted() {
@@ -118,7 +86,20 @@ new Vue({
       }
     },
 
+    updateData: function (data) {
+      // sync content to component
+      this.post.content = data
+    },
+
+    updateDataEdit: function (data) {
+      // sync content to component
+      this.editContent = data
+    },
+
     saveArticle: function () {
+        
+       console.log(this.post.content)
+
         //validações
         if (this.post.title == '' || this.post.title == null) {
           this.message = 'O título é obrigatório!';
@@ -174,22 +155,54 @@ new Vue({
     },
 
     clickCreatePost: function () {
-        // clearInstance(this);
-        isCreate = true;
-        isUpdate = false;
+        clearInstance(this);
         this.$refs.myModalRef.show();
     },
     
     clickEdit: function(post) {
-      
+        this.editId = post.id;
+        this.editContent = post.content;
+        this.$refs.contentModal.show();
     },
 
+    clickAlterContent: function() {
+     
+      this.errorEdit = false;
+      if(this.editContent == '' || this.editContent == null) {
+          this.message = 'O conteúdo não pode está vazio!';
+          this.errorEdit = true;
+          return;
+      }
+
+      var data = {
+        id: this.editId,
+        content: this.editContent
+      }  
+
+      axios.post("/rest/post/update.php", data).then(response => {
+        console.log(response)
+        if (!response.data.error) {
+          this.message = response.data.message;
+          this.success = true;
+          this.error = false;
+          this.$refs.contentModal.hide();
+          this.listPosts();      
+        }
+        else {
+          this.message = response.data.message;
+          this.success = false;
+          this.error = true;
+        }
+        
+      })
+
+    }
    
   }
 
 });
 
-//çimpa formulário de artigo
+//Limpa formulário de artigo
 function clearInstance(vue) {
   vue.post.title = null;
   vue.post.date = null;

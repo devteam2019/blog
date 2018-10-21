@@ -22,6 +22,9 @@
     <!-- links diretos -->
     <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="../css/bootstrap-vue.css"/>
+
+   
+
 </head>
 
 <body>
@@ -95,7 +98,7 @@
             </b-alert>
               <!-- Editable table -->
                   <div class="card">
-                  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulacao de Artigos</h3>
+                  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Manipulação de Artigos</h3>
                         <div class="card-body">
                               <div id="table" class="table-editable">
                                 <span class="table-add float-right mb-3 mr-2"><a href="#!" @click="clickCreatePost"
@@ -123,7 +126,7 @@
                                         <td class="pt-3-half" contenteditable="true">{{post.categoryName}}</td>
                                         <td>
                                         <span class="table-remove"><button type="button" 
-                                        class="btn btn-info btn-rounded btn-sm my-0" @click="clickEdit(post.content)">Conteúdo</button></span>
+                                        class="btn btn-info btn-rounded btn-sm my-0" @click="clickEdit(post)">Conteúdo</button></span>
                                         </td>
                                         <td>
                                         <span class="table-remove"><button type="button" 
@@ -178,17 +181,35 @@
                 </select>
             </b-form-group>
           
-
             <div class="form-group">
                 <label for="content">Conteúdo</label>
-                <ckeditor v-model="post.content"></ckeditor>
+                <vue-html5-editor @change="updateData" :content="post.content" :height="500"></vue-html5-editor>
             </div>
-                           
+             
     
       </div>
       <b-btn  class="mt-3" variant="info" block @click="saveArticle">Salvar</b-btn>
 
     </b-modal>
+
+      <!-- Modal -->
+     
+      <b-modal ref="contentModal" size="lg" hide-footer title="Conteúdo">
+         <div class="d-block">
+         <b-alert :show="errorEdit" variant="danger">
+                    {{message}}
+         </b-alert>
+         <div class="row">
+            <div class="col-lg-12 nopadding">
+                <vue-html5-editor @change="updateDataEdit" :content="editContent" :height="500"></vue-html5-editor>
+            </div>
+		</div>
+
+        </div>
+     <b-btn  class="mt-3" variant="info" block @click="clickAlterContent">Alterar</b-btn>
+
+    </b-modal>
+
 
       <!-- fim modal-->
 
@@ -213,8 +234,8 @@
 
     <!-- axios cliente rest-->
     <script type="text/javascript" src="../js/axios.0.18.0.min.js"></script>
-    <!-- ckeditor-->
-    <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+    <!-- links para editor -->
+    <script src="../editor/vue-html5-editor.js"></script>
     <!-- index do vue-->
     <script type="text/javascript" src="../vuejs/admin/index.js"></script>
 

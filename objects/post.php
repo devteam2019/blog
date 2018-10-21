@@ -25,7 +25,7 @@ class Post {
                          u.login userName, ct.nome categoryName   
                         FROM ".$this->table_name." p 
                             inner join usuario u on u.id = p.usuario_id 
-                            inner join categoria ct on ct.id = p.categoria_id";
+                            inner join categoria ct on ct.id = p.categoria_id order by p.data desc";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query
@@ -46,17 +46,10 @@ class Post {
        return false;
     }
 
-    function update($id, $title, $date, $content, $image, $userId, $categoryId) {
-        // query de listar usuários
-       $query = "update post set titulo = '".$title."', 
-                                 conteudo = '".$content."', 
-                                 data = '".$date."', 
-                                 img = '".$image."', 
-                                 usuario_id = ".$userId.", 
-                                 categoria_id = ".$categoryId." 
-                where id = ".$id.""; 
-       
-       // prepare query statement
+    function update($id, $content) {
+        // query altera conteudo artigo
+       $query = "update ".$this->table_name." set conteudo = '".$content."' where id = ".$id.""; 
+        // prepare query statement
        $stmt = $this->conn->prepare($query);
        // execute query
        if($stmt->execute()) {
