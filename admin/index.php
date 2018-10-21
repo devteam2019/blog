@@ -94,7 +94,7 @@
 
 			<!--Section: Cards-->
 			<section class="text-center">
-				<b-alert :show="success" dismissible variant="success">
+				<b-alert :show="success" variant="success">
 					{{message}}
 				</b-alert>
 				<!-- Editable table -->
