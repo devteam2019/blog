@@ -58,5 +58,17 @@ class Post {
        return false;
     }
 
+    function delete($id) {
+        // query altera conteudo artigo
+       $query = "delete from ".$this->table_name." where id = ".$id.""; 
+        // prepare query statement
+       $stmt = $this->conn->prepare($query);
+       // execute query
+       if($stmt->execute()) {
+          return true;
+       }
+       return false;
+    }
+
      
 }

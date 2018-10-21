@@ -130,7 +130,7 @@
                                         </td>
                                         <td>
                                         <span class="table-remove"><button type="button" 
-                                        class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span>
+                                        class="btn btn-danger btn-rounded btn-sm my-0" @click="clickDelete(post)">Delete</button></span>
                                         </td>
                                     </tr>
                                     </table>

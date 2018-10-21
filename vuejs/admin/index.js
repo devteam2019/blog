@@ -196,7 +196,25 @@ new Vue({
         
       })
 
+    },
+
+    clickDelete: function(post) {
+      axios.post("/rest/post/delete.php", {id: post.id}).then(response => {
+        if (!response.data.error) {
+          this.message = response.data.message;
+          this.success = true;
+          this.error = false;
+          this.listPosts();      
+        }
+        else {
+          this.message = response.data.message;
+          this.success = false;
+          this.error = true;
+        }
+     })
+
     }
+
    
   }
 
